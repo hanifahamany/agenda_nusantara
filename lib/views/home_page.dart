@@ -205,8 +205,6 @@ class _HomePageState extends State<HomePage> {
                 }),
               ],
             ),
-
-            // const Divider(height: 30),
           ],
         ),
       ),
@@ -258,32 +256,32 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _buildMenuBtn(String label, String imagePath, Color bgColor, VoidCallback onTap) {
-  return ElevatedButton(
-    onPressed: onTap,
-    style: ElevatedButton.styleFrom(
-      backgroundColor: bgColor,
-      foregroundColor: Colors.black,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-      elevation: 2,
-      padding: const EdgeInsets.symmetric(vertical: 10), 
-    ),
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center, 
-      children: [
-        Image.asset(
-          imagePath, 
-          width: 40, 
-          height: 40, 
-          errorBuilder: (c, e, s) => const Icon(Icons.broken_image, size: 40)
-        ),
-        const SizedBox(height: 8), 
-        Text(
-          label, 
-          textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: Colors.black)
-        ),
-      ],
-    ),
-  );
-}
+    return ElevatedButton(
+      onPressed: onTap,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: bgColor,
+        foregroundColor: Colors.black,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        elevation: 2,
+        padding: const EdgeInsets.symmetric(vertical: 10), 
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center, 
+        children: [
+          Image.asset(
+            imagePath, 
+            width: 40, 
+            height: 40, 
+            errorBuilder: (c, e, s) => const Icon(Icons.broken_image, size: 40)
+          ),
+          const SizedBox(height: 8), 
+          Text(
+            label, 
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500, color: Colors.black)
+          ),
+        ],
+      ),
+    );
+  }
 } 

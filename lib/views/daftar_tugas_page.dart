@@ -90,7 +90,6 @@ class _DaftarTugasPageState extends State<DaftarTugasPage> {
                       height: 28, 
                       width: 28,
                       fit: BoxFit.contain,
-                      // Opsional: Beri sedikit transparansi jika tugas sudah selesai
                       color: isSelesai ? Colors.white.withOpacity(0.5) : null,
                       colorBlendMode: isSelesai ? BlendMode.dstIn : null,
                     ),

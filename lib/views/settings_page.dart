@@ -83,7 +83,6 @@ class _SettingsPageState extends State<SettingsPage> {
         padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
-            // --- CONTAINER 1: FORM PENGATURAN AKUN ---
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
@@ -112,10 +111,9 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   const SizedBox(height: 15),
 
-                  // --- PASSWORD SAAT INI + TOGGLE ---
                   TextField(
                     controller: _currentPassController,
-                    obscureText: _isObscureCurrent, // Menggunakan variabel state
+                    obscureText: _isObscureCurrent, 
                     decoration: InputDecoration(
                       labelText: "Password Saat Ini",
                       hintText: "Masukkan sandi lama",
@@ -136,7 +134,6 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                   const SizedBox(height: 15),
 
-                  // --- PASSWORD BARU + TOGGLE ---
                   TextField(
                     controller: _newPassController,
                     obscureText: _isObscureNew, // Menggunakan variabel state
@@ -179,7 +176,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
             const SizedBox(height: 25),
 
-            // --- CONTAINER 2: DATA DEVELOPER ---
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
