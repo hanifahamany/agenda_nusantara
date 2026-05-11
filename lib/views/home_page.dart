@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
   final DbHelper _dbHelper = DbHelper();
   String _username = "user"; 
   bool _startAnimate = false; 
-  Timer? _timer; // Variabel pengaman agar animasi tidak tumpuk
+  Timer? _timer; 
   String get _formattedUsername => _username.isNotEmpty 
     ? _username[0].toUpperCase() + _username.substring(1) 
     : "";
@@ -129,10 +129,6 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("Halo, $_formattedUsername 👋", style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold)),
-                    // Text(
-                    //   "Halo ${_username.isNotEmpty ? _username[0].toUpperCase() + _username.substring(1) : ''} 👋", 
-                    //   style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold)
-                    // ),
                     Text(DateFormat('EEEE, dd MMMM yyyy', 'id_ID').format(DateTime.now()), style: TextStyle(color: Colors.grey[600])),
                   ],
                 ),
@@ -269,18 +265,18 @@ class _HomePageState extends State<HomePage> {
       foregroundColor: Colors.black,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       elevation: 2,
-      padding: const EdgeInsets.symmetric(vertical: 10), // Memberi ruang atas bawah
+      padding: const EdgeInsets.symmetric(vertical: 10), 
     ),
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.center, // Ikon & Teks di tengah secara vertikal
+      mainAxisAlignment: MainAxisAlignment.center, 
       children: [
         Image.asset(
           imagePath, 
-          width: 40, // Ukuran ikon diperbesar sedikit agar proporsional
+          width: 40, 
           height: 40, 
           errorBuilder: (c, e, s) => const Icon(Icons.broken_image, size: 40)
         ),
-        const SizedBox(height: 8), // Jarak antara ikon dan teks
+        const SizedBox(height: 8), 
         Text(
           label, 
           textAlign: TextAlign.center,
