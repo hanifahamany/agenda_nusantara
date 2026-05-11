@@ -13,7 +13,7 @@ class _SettingsPageState extends State<SettingsPage> {
   final _currentPassController = TextEditingController();
   final _newPassController = TextEditingController();
 
-  // Variabel untuk mengontrol toggle password
+  // variabel toggle password
   bool _isObscureCurrent = true;
   bool _isObscureNew = true;
 
@@ -96,10 +96,10 @@ class _SettingsPageState extends State<SettingsPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    "Keamanan Akun",
+                    "Update Akun",
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF284C67)),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 15),
                   
                   TextField(
                     controller: _userController,
@@ -116,7 +116,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     obscureText: _isObscureCurrent, 
                     decoration: InputDecoration(
                       labelText: "Password Saat Ini",
-                      hintText: "Masukkan sandi lama",
+                      hintText: "Masukkan password lama",
                       labelStyle: TextStyle(color: primaryColor),
                       focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: primaryColor)),
                       suffixIcon: IconButton(
@@ -136,10 +136,10 @@ class _SettingsPageState extends State<SettingsPage> {
 
                   TextField(
                     controller: _newPassController,
-                    obscureText: _isObscureNew, // Menggunakan variabel state
+                    obscureText: _isObscureNew, 
                     decoration: InputDecoration(
                       labelText: "Password Baru",
-                      hintText: "Masukkan sandi baru",
+                      hintText: "Masukkan password baru",
                       labelStyle: TextStyle(color: primaryColor),
                       focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: primaryColor)),
                       suffixIcon: IconButton(
@@ -186,10 +186,11 @@ class _SettingsPageState extends State<SettingsPage> {
                 ],
               ),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "DEVELOPER APLIKASI",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: primaryColor),
+                    "Developer Aplikasi",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Color(0xFF284C67)),
                   ),
                   const SizedBox(height: 15),
                   Row(
@@ -218,7 +219,9 @@ class _SettingsPageState extends State<SettingsPage> {
                             const SizedBox(height: 5),
                             const Text("NIM: 2241720127", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w500)),
                             const SizedBox(height: 5),
-                            const Text("kicau mania", style: TextStyle(color: Colors.grey, fontSize: 12)),
+                            const Text(
+                              "Mobile Developer", 
+                              style: TextStyle(color: Colors.grey, fontSize: 12, fontWeight: FontWeight.bold),),
                           ],
                         ),
                       ),
