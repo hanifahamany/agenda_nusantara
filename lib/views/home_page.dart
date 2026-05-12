@@ -100,7 +100,6 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       }
     }
 
-    // logic urutan tanggal di grafik
     var sortedEntries = tugasPerHari.entries.toList()
       ..sort((a, b) {
         DateTime dateA = DateTime.parse('2026-${a.key.split('/').reversed.join('-')}');
