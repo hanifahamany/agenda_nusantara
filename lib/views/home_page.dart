@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
-      // Refresh data otomatis saat app kembali ke foreground
+      // refresh otomatis saat kembali ke foreground
       _loadUsername();
       _refreshData();
     }
@@ -100,10 +100,18 @@ class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
       }
     }
 
+    // logic urutan tanggal di grafik
+    var sortedEntries = tugasPerHari.entries.toList()
+      ..sort((a, b) {
+        DateTime dateA = DateTime.parse('2026-${a.key.split('/').reversed.join('-')}');
+        DateTime dateB = DateTime.parse('2026-${b.key.split('/').reversed.join('-')}');
+        return dateA.compareTo(dateB);
+      });
+
     int maxTugas = tugasPerHari.values.reduce((a, b) => a > b ? a : b);
     if (maxTugas == 0) maxTugas = 1; 
 
-    return tugasPerHari.entries.map((e) {
+    return sortedEntries.map((e) {
       double tinggiBar = (e.value / maxTugas) * 80; 
       return _buildBar(e.key, tinggiBar, e.value);
     }).toList();
