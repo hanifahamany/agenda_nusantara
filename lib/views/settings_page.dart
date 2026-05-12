@@ -67,6 +67,13 @@ class _SettingsPageState extends State<SettingsPage> {
           backgroundColor: Colors.green,
         ),
       );
+      
+      // Kembali ke beranda setelah 1 detik
+      Future.delayed(const Duration(seconds: 1), () {
+        if (mounted) {
+          Navigator.pop(context);
+        }
+      });
     }
   }
 

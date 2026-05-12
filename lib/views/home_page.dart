@@ -16,7 +16,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with WidgetsBindingObserver {
   List<Map<String, dynamic>> _agendas = [];
   final DbHelper _dbHelper = DbHelper();
   String _username = "user"; 
@@ -29,14 +29,25 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     _loadUsername(); 
     _refreshData();
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _timer?.cancel(); 
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      // Refresh data otomatis saat app kembali ke foreground
+      _loadUsername();
+      _refreshData();
+    }
   }
 
   void _refreshData() async {
@@ -177,28 +188,28 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.symmetric(horizontal: 15),
               mainAxisSpacing: 10, 
               crossAxisSpacing: 10,
-              childAspectRatio: 1.3, // DIUBAH DARI 2.5 KE 1.3
+              childAspectRatio: 1.3, 
               children: [
                 _buildMenuBtn("TAMBAH TUGAS PENTING ", 'assets/images/add-penting.png', Colors.white, () 
                                 async {
-                                  final refresh = await Navigator.push(
+                                  await Navigator.push(
                                     context, MaterialPageRoute(builder: (context) => const AddPentingPage()),
                                   );
-                                  if (refresh == true) _refreshData();
+                                  _refreshData();
                                 }),
                 _buildMenuBtn("TAMBAH TUGAS BIASA", 'assets/images/add-biasa.png', Colors.white, () 
                                 async {
-                                  final refresh = await Navigator.push(
+                                  await Navigator.push(
                                     context, MaterialPageRoute(builder: (context) => const AddBiasaPage()),
                                   );
-                                  if (refresh == true) _refreshData();
+                                  _refreshData();
                                 }),
                 _buildMenuBtn("DAFTAR TUGAS", 'assets/images/daftar-tugas.png', Colors.white, () 
                                 async {
-                                  final refresh = await Navigator.push(
+                                  await Navigator.push(
                                     context, MaterialPageRoute(builder: (context) => const DaftarTugasPage()),
                                   );
-                                  if (refresh == true) _refreshData();
+                                  _refreshData();
                                 }),
                 _buildMenuBtn("PENGATURAN", 'assets/images/pengaturan.png', Colors.white, () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const SettingsPage())).then((_) => _loadUsername());

@@ -12,6 +12,7 @@ class DaftarTugasPage extends StatefulWidget {
 class _DaftarTugasPageState extends State<DaftarTugasPage> {
   final DbHelper _dbHelper = DbHelper();
   List<Map<String, dynamic>> _allAgendas = [];
+  bool _hasChanges = false;
 
   @override
   void initState() {
@@ -43,7 +44,7 @@ class _DaftarTugasPageState extends State<DaftarTugasPage> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
-            Navigator.pop(context, true); 
+            Navigator.pop(context, _hasChanges); 
           },
         ),
       ),
@@ -64,6 +65,9 @@ class _DaftarTugasPageState extends State<DaftarTugasPage> {
                   child: ListTile(
                     onTap: () async {
                       await _dbHelper.toggleComplete(item['id'], isSelesai ? 0 : 1);
+                      setState(() {
+                        _hasChanges = true;
+                      });
                       _refreshData();
                     },
                     leading: Checkbox(
@@ -71,6 +75,9 @@ class _DaftarTugasPageState extends State<DaftarTugasPage> {
                       value: isSelesai,
                       onChanged: (val) async {
                         await _dbHelper.toggleComplete(item['id'], val! ? 1 : 0);
+                        setState(() {
+                          _hasChanges = true;
+                        });
                         _refreshData();
                       },
                     ),
@@ -82,7 +89,13 @@ class _DaftarTugasPageState extends State<DaftarTugasPage> {
                         color: isSelesai ? Colors.grey : Colors.black87,
                       ),
                     ),
-                    subtitle: Text("Jatuh Tempo: ${_formatTgl(item['due_date'])}"),
+                    subtitle: Text(
+                      "${isPenting ? 'Penting' : 'Biasa'} • Deadline: ${_formatTgl(item['due_date'])}",
+                      style: TextStyle(
+                        color: isPenting ? Colors.red : Colors.green,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                     trailing: Image.asset(
                       isPenting
                           ? 'assets/images/penting-flag.png' 
